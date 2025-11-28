@@ -1,0 +1,42 @@
+----NO Nvidea useage run this line-----
+docker run --rm --gpus all nvidia/cuda:12.4.1-base-ubuntu22.04 nvidia-smi
+
+
+----High Security docker container---- 
+docker run -d \
+--gpus all \
+-v ollama:/root/.ollama \
+-p 11434:11434 \
+--security-opt=no-new-privileges \
+--cap-drop=ALL \
+--cap-add=SYS_NICE \
+--memory=8g \
+--memory-swap=8g \
+--cpus=4 \
+--read-only \
+--name ollama \
+ollama/ollama
+
+-----command line for secure container ------
+docker run -d --gpus all -v ollama:/root/.ollama -p 11434:11434 --security-opt no-new-privileges --cap-drop ALL --cap-add SYS_NICE --memory 8g --memory-swap 24g --cpus 4 --read-only --name ollama8 ollama/ollama
+
+---bigger Vram-----ollama----1 network connection---firewall---USE FOR TRAINING-----
+docker run -d --name ollama8 --gpus all --network bridge --add-host=host.docker.internal:host-gateway --ipc=none --security-opt no-new-privileges --cap-drop ALL --cap-add SYS_NICE --read-only --tmpfs /tmp:exec --tmpfs /run --tmpfs /var/tmp -e NVIDIA_VISIBLE_DEVICES=all -e OLLAMA_NUM_GPU_LAYERS=auto -p 127.0.0.1:11434:11434 -v ollama:/root/.ollama ollama/ollama:latest
+
+---bigger Vram-----deepseek----
+docker run -d --name dseek8 --gpus all --network none --ipc=none  -p 11434:11434 -v ollama:/root/.ollama ollama/ollama:latest
+
+----run model----
+14 billion 3060ti 8GB slow
+docker exec -it dseek ollama run deepseek-r1:14b
+
+8 Billion10,000
+docker exec -it dseek8 ollama run deepseek-r1:8b
+
+----OLLAMA----
+docker exec -it ollama8 ollama run llama3:8b
+
+
+----Whisper (youtube) with security on CPU -------------
+docker run -d --name whisper_asr -p 127.0.0.1:9001:9000 --tmpfs /tmp:exec,size=2g --shm-size=1g --cap-drop ALL --security-opt no-new-privileges --restart unless-stopped -e ASR_MODEL=medium.en -e KEEP_ALIVE=7200 onerahmet/openai-whisper-asr-webservice:latest
+
