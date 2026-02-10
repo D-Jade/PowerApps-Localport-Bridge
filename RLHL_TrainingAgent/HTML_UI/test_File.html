@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offline RLHL Preference Rater</title>
+  <link rel="stylesheet" href="tfStyle.css" />
+</head>
+
+<body>
+  <div class="app">
+    <header>Offline RLHL Preference Rater (localhost / fully offline)</header>
+
+    <div class="section">
+      <div class="label">Prompt</div>
+      <textarea id="prompt" placeholder="Type your instruction here…"></textarea>
+      <div class="btnrow">
+        <button id="runBtn">Run Both Models</button>
+        <button id="clearBtn">Clear</button>
+      </div>script
+    </div>
+
+    <div class="section grid2">
+      <div class="panel">
+        <h3>DeepSeek (port: 11435)</h3>
+        <div id="outA" class="output muted">Output text from DeepSeek…</div>
+      </div>
+      <div class="panel">
+        <h3>Model B (port: 9002)</h3>
+        <div id="outB" class="output muted">Output text from Model B…</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">Rate each model independently</div>
+
+      <div class="ratingCard">
+        <div class="ratingHeader">
+          <div>Dimension</div><div>Model A</div><div>Model B</div>
+        </div>
+
+        <div class="row" data-dim="correctness">
+          <div>Correctness</div>
+          <div class="stars" data-model="A"></div>
+          <div class="stars" data-model="B"></div>
+        </div>
+
+        <div class="row" data-dim="clarity">
+          <div>Clarity</div>
+          <div class="stars" data-model="A"></div>
+          <div class="stars" data-model="B"></div>
+        </div>
+
+        <div class="row" data-dim="usefulness">
+          <div>Usefulness</div>
+          <div class="stars" data-model="A"></div>
+          <div class="stars" data-model="B"></div>
+        </div>
+
+        <div class="row" data-dim="instruction">
+          <div>Instruction Following</div>
+          <div class="stars" data-model="A"></div>
+          <div class="stars" data-model="B"></div>
+        </div>
+
+        <div class="row" data-dim="safety">
+          <div>Safety / Restraint</div>
+          <div class="stars" data-model="A"></div>
+          <div class="stars" data-model="B"></div>
+        </div>
+      </div>
+
+      <input id="note" placeholder="Optional comparison note…" />
+      <div class="btnrow">
+        <button id="saveBtn">Save Ratings</button>
+        <button id="nextBtn">Next Prompt</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

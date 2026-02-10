@@ -1,14 +1,12 @@
 # whisper_api.py
 # Run with:
-#   uvicorn Deep_whisper_api:app --host 0.0.0.0 --port 8000
+#   uvicorn whisper_api:app --host 0.0.0.0 --port 8000
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from pathlib import Path
 import base64
 import requests
-import re  # for stripping <think>...</think>
-
 
 app = FastAPI()
 
@@ -25,9 +23,6 @@ class AudioRequest(BaseModel):
     format: str | None = None
     base64_audio: str       # clean Power Apps base64 audio (no header)
 
-class DeepSeekRequest(BaseModel):
-    prompt: str                 # user prompt from Power Apps / PAD / test
-    model: str | None = None    # optional, default will be deepseek-r1:8b
 
 @app.post("/transcribe")
 def transcribe_audio(payload: AudioRequest):
@@ -79,41 +74,3 @@ def transcribe_audio(payload: AudioRequest):
 
     # 7) Return to PAC → Power Apps
     return {"file_name": base_name, "transcription": text}
-@app.post("/deepseek")
-def deepseek_generate(payload: DeepSeekRequest):
-    import requests
-
-    # 1) Choose model
-    model = payload.model or "deepseek-r1:8b"
-
-    # 2) Build body for your local DeepSeek server
-    body = {
-        "model": model,
-        "prompt": payload.prompt,
-        "stream": False
-    }
-
-    try:
-        resp = requests.post(
-            "http://127.0.0.1:11435/api/generate",
-            json=body,
-            timeout=300
-        )
-    except Exception as e:
-        return {"error": f"DeepSeek HTTP error: {e}"}
-
-    if resp.status_code != 200:
-        return {"error": f"DeepSeek returned {resp.status_code}: {resp.text[:200]}"}
-
-    data = resp.json()
-
-    # 3) Strip <think>…</think>
-    text = data.get("response", "")
-    import re
-    text = re.sub(r"(?s)<think>.*?</think>\s*", "", text).strip()
-
-    return {
-        "model": model,
-        "prompt": payload.prompt,
-        "response": text
-    }
