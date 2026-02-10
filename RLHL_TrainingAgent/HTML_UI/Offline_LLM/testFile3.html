@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offline RLHL Preference Rater</title>
+  <link rel="stylesheet" href="tf2Style.css" />
+</head>
+
+<body>
+<div class="app">
+    <header>Offline RLHL Preference Rater (localhost / fully offline)</header>
+
+    <div class="section">
+      <table class="prompt-table">
+        <tr>
+          <td class="label-cell">
+            <div class="label">Prompt</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <textarea id="prompt" placeholder="Type your instruction here…"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="btnrow">
+            <button id="runBtn">Run Both Models</button>
+            <button id="clearBtn">Clear</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- SPLIT OUTPUT TABLES -->
+    <div class="section grid2">
+
+      <!-- DeepSeek -->
+      <table class="model-table">
+        <thead>
+          <tr>
+            <th>DeepSeek (port: 11435)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div id="outA" class="output muted">
+                Output text from DeepSeek…
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Model B -->
+      <table class="model-table">
+        <thead>
+          <tr>
+            <th>Model B (port: 11434)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div id="outB" class="output muted">
+                Output text from Model B…
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="section">
+      <div class="label">Rate each model independently</div>
+
+      <div class="ratingCard">
+        <div class="ratingHeader">
+          <div>Dimension</div>
+          <div>Model A</div>
+          <div>Model B</div>
+        </div>
+
+        <div class="row" data-dim="correctness">
+          <div>Correctness</div>
+          <div class="stars" data-model="A"></div>
+          <div class="stars" data-model="B"></div>
+        </div>
+
+        <div class="row" data-dim="clarity">
+          <div>Clarity</div>
+          <div class="stars" data-model="A"></div>
+          <div class="stars" data-model="B"></div>
+        </div>
+
+        <div class="row" data-dim="usefulness">
+          <div>Usefulness</div>
+          <div class="stars" data-model="A"></div>
+          <div class="stars" data-model="B"></div>
+        </div>
+
+        <div class="row" data-dim="instruction">
+          <div>Instruction Following</div>
+          <div class="stars" data-model="A"></div>
+          <div class="stars" data-model="B"></div>
+        </div>
+
+        <div class="row" data-dim="safety">
+          <div>Safety / Restraint</div>
+          <div class="stars" data-model="A"></div>
+          <div class="stars" data-model="B"></div>
+        </div>
+      </div>
+
+      <input id="note" placeholder="Optional comparison note…" />
+      <div class="btnrow">
+        <button id="saveBtn">Save Ratings</button>
+        <button id="nextBtn">Next Prompt</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="tf2script.js"></script>
+</body>
+</html>

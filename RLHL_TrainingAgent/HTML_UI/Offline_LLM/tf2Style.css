@@ -1,4 +1,4 @@
-/* tfStyle.css (unchanged original) */
+/* tfStyle.css (with table support added) */
 :root {
   --bg-main: #121212;
   --bg-panel: #1e1b18;
@@ -137,157 +137,6 @@ input::placeholder {
   border-color: var(--accent);
 }
 
-.btnrow {
-  display: flex;/* ===== Warm Dark Theme ===== */
-
-:root {
-  --bg-main: #121212;
-  --bg-panel: #1e1b18;
-  --bg-soft: #26221e;
-
-  --border: #3a332d;
-
-  --text-main: #f5f0e6;
-  --text-muted: #b8afa3;
-
-  --accent: #e6b566;      /* warm gold */
-  --accent-soft: #3a2f1f; /* muted amber */
-}
-
-body {
-  font-family: system-ui, sans-serif;
-  background: var(--bg-main);
-  color: var(--text-main);
-  margin: 24px;
-}
-
-/* Main container */
-.app {
-  max-width: 1100px;
-  margin: auto;
-  background: var(--bg-panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-}
-
-/* Header */
-header {
-  padding: 16px;
-  font-weight: 700;
-  border-bottom: 1px solid var(--border);
-  background: linear-gradient(90deg, #1e1b18, #26221e);
-}
-
-/* Sections */
-.section {
-  padding: 16px;
-  border-bottom: 1px solid var(--border);
-}
-
-/* Labels */
-.label {
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--accent);
-}
-
-/* Inputs */
-textarea,
-input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--bg-soft);
-  color: var(--text-main);
-}
-
-textarea::placeholder,
-input::placeholder {
-  color: var(--text-muted);
-}
-
-/* Two-column layout */
-.grid2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-/* Model panels */
-.panel {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px;
-  background: var(--bg-soft);
-}
-
-.panel h3 {
-  margin-top: 0;
-  color: var(--accent);
-}
-
-.output {
-  min-height: 120px;
-  white-space: pre-wrap;
-}
-
-.muted {
-  color: var(--text-muted);
-}
-
-/* Rating card */
-.ratingCard {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px;
-  background: var(--bg-soft);
-}
-
-/* Rating grid */
-.ratingHeader,
-.row {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 10px;
-  align-items: center;
-}
-
-.ratingHeader {
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.row {
-  border-top: 1px dashed var(--border);
-  padding: 10px 0;
-}
-
-/* Stars */
-.stars {
-  display: flex;
-  gap: 6px;
-}
-
-.star {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  background: #191613;
-}
-
-.star.on {
-  background: var(--accent-soft);
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
 /* Buttons */
 .btnrow {
   display: flex;
@@ -313,23 +162,33 @@ button:active {
   transform: translateY(1px);
 }
 
-  margin-top: 12px;
-}
+/* =========================================================
+   TABLE SUPPORT (adds clear separation between DeepSeek / B)
+   ========================================================= */
 
-button {
-  background: linear-gradient(180deg, #2a241f, #1f1a16);
-  color: var(--text-main);
+/* For the 2-cell output table */
+.split-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 10px 14px;
-  cursor: pointer;
-  font-weight: 600;
+  border-radius: 12px;
+  overflow: hidden; /* allows rounded corners */
+  background: var(--bg-soft);
 }
 
-button:hover {
-  border-color: var(--accent);
+.split-table td {
+  vertical-align: top;
+  padding: 12px;
 }
 
-button:active {
-  transform: translateY(1px);
+/* Visible vertical separator for the right cell */
+.split-table td.divider {
+  border-left: 2px solid var(--border);
+}
+
+/* Optional: make the headings match your theme even inside table cells */
+.split-table h3 {
+  margin: 0 0 10px 0;
+  color: var(--accent);
 }
