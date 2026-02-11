@@ -1,4 +1,6 @@
-/* tfStyle.css (with table support added) */
+/* tfStyle.css */
+/* ===== Warm Dark Theme (layout-first) ===== */
+
 :root {
   --bg-main: #121212;
   --bg-panel: #1e1b18;
@@ -13,138 +15,97 @@
   --accent-soft: #3a2f1f;
 }
 
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; 
+margin:0;
+
+
+/* is this for the text "Offline RLHL Preferences Rater... */
 body {
+  margin: 0;
   font-family: system-ui, sans-serif;
   background: var(--bg-main);
   color: var(--text-main);
-  margin: 24px;
 }
 
-.app {
-  max-width: 1100px;
-  margin: auto;
+/* Contianer 1 sidebar 20%*/
+.sidebar {
+  background: #9dd89f;
+  border-right: 1px solid var(--border);
+  width: 100%;
+  padding: 20px;
+  height: 10vh;
+  overflow-y: auto;
+}
+
+
+/* MAIN container must fill the page but still be shrink-friendly */
+.UI_main {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
   background: var(--bg-panel);
-  border: 1px solid var(--border);
+  border: none;
   border-radius: 14px;
+  overflow-y: auto;
+  margin-left: auto;
 }
 
-header {
+/* Header bar */
+.app__header {
   padding: 16px;
-  font-weight: 700;
+  font-weight: 800;
   border-bottom: 1px solid var(--border);
   background: linear-gradient(90deg, #1e1b18, #26221e);
 }
 
+.app__header h1 {
+  margin: 0;
+  font-size: 2.4rem;
+  font-family: 'Segoe UI';
+  text-align: center;
+}
+
+/* Sections */
 .section {
   padding: 16px;
   border-bottom: 1px solid var(--border);
 }
 
-.label {
-  font-weight: 600;
-  margin-bottom: 8px;
+.section__title {
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+  font-weight: 800;
   color: var(--accent);
 }
 
-textarea,
-input {
+/* Controls */
+.control {
   width: 100%;
-  padding: 10px;
   border-radius: 10px;
   border: 1px solid var(--border);
   background: var(--bg-soft);
   color: var(--text-main);
+  padding: 10px;
 }
 
-textarea::placeholder,
-input::placeholder {
-  color: var(--text-muted);
-}
+.control::placeholder { color: var(--text-muted); }
 
-.grid2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
+.control--text { resize: vertical; }
 
-.panel {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px;
-  background: var(--bg-soft);
-}
-
-.panel h3 {
-  margin-top: 0;
-  color: var(--accent);
-}
-
-.output {
-  min-height: 120px;
-  white-space: pre-wrap;
-}
-
-.muted {
-  color: var(--text-muted);
-}
-
-.ratingCard {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px;
-  background: var(--bg-soft);
-}
-
-.ratingHeader,
-.row {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 10px;
-  align-items: center;
-}
-
-.ratingHeader {
-  font-weight: 700;
-  color: var(--accent);
-}
-
-.row {
-  border-top: 1px dashed var(--border);
-  padding: 10px 0;
-}
-
-.stars {
-  display: flex;
-  gap: 6px;
-}
-
-.star {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-  background: #191613;
-}
-
-.star.on {
-  background: var(--accent-soft);
-  color: var(--accent);
-  border-color: var(--accent);
-}
+.control--input { margin-top: 12px; }
 
 /* Buttons */
-.btnrow {
+.buttonRow {
   display: flex;
   gap: 10px;
   margin-top: 12px;
+  flex-wrap: wrap;
 }
 
-button {
+.btn {
   background: linear-gradient(180deg, #2a241f, #1f1a16);
   color: var(--text-main);
   border: 1px solid var(--border);
@@ -154,41 +115,190 @@ button {
   font-weight: 600;
 }
 
-button:hover {
-  border-color: var(--accent);
+.btn:hover { border-color: var(--accent); }
+.btn:active { transform: translateY(1px); }
+
+/* Two model panels */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
-button:active {
-  transform: translateY(1px);
+@media (max-width: 820px) {
+  .grid2 { grid-template-columns: 1fr; }
 }
 
-/* =========================================================
-   TABLE SUPPORT (adds clear separation between DeepSeek / B)
-   ========================================================= */
-
-/* For the 2-cell output table */
-.split-table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
+/* Panel card */
+.panel {
   border: 1px solid var(--border);
   border-radius: 12px;
-  overflow: hidden; /* allows rounded corners */
-  background: var(--bg-soft);
-}
-
-.split-table td {
-  vertical-align: top;
+  background: #1b1714;
   padding: 12px;
 }
 
-/* Visible vertical separator for the right cell */
-.split-table td.divider {
-  border-left: 2px solid var(--border);
+.panel__header h3 {
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+  color: var(--accent);
 }
 
-/* Optional: make the headings match your theme even inside table cells */
-.split-table h3 {
-  margin: 0 0 10px 0;
+.output {
+  margin: 0;
+  min-height: 140px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  white-space: pre-wrap;
+}
+
+.muted { color: var(--text-muted); }
+
+/* Ratings card (table-like layout using grid) */
+.ratingCard {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #1b1714;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.ratingHeader,
+.ratingRow {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.ratingHeader {
+  font-weight: 800;
   color: var(--accent);
+  padding-bottom: 8px;
+}
+
+.ratingHeader p { margin: 0; }
+
+.ratingRow {
+  border-top: 1px dashed var(--border);
+  padding: 10px 0;
+}
+
+.ratingRow__label { margin: 0; }
+
+/* Star buttons (layout only; JS later will “select” them) */
+.stars {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.star {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #191613;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.star:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+/* ===== Comparison rating layout (Image 2 style) ===== */
+.compareGrid {
+  display: grid;
+  grid-template-columns: 36% 14% 36% 14%;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1b1714;
+}
+
+.compareHead {
+  padding: 14px 16px;
+  font-weight: 800;
+  color: var(--text-main);
+  background: #24201c;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-family: 'Segoe UI', sans-serif;  /* change font */
+  font-size: 1.3rem;   
+  text-align: center;
+   
+}
+
+.compareHead--rating {
+  text-align: center;
+}
+
+.compareCell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px;
+  background: #1b1714;
+}
+
+.compareCell--output {
+  min-height: 260px;
+}
+
+.compareOutput {
+  margin: 0;
+  height: 100%;
+  min-height: 260px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  white-space: pre-wrap;
+  overflow: auto; /* output area scrolls if long */
+  color: var(--text-main);
+  font-family: 'Segoe UI', sans-serif;  /* change font */
+  font-size: 1.1rem;                    /* increase size */
+  line-height: 1.6;  
+}
+
+.compareCell--rating {
+  min-height: 260px;
+}
+
+.ratingStack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ratingItem {
+  border-top: 1px dashed var(--border);
+  padding-top: 10px;
+}
+
+.ratingItem:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.ratingItem p {
+  margin: 0 0 8px 0;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Keep your existing .stars + .star rules; these just tighten spacing here */
+.compareCell--rating .stars {
+  gap: 6px;
+}
+
+
+/* Footer */
+.app__footer {
+  padding: 12px 16px;
+  color: var(--text-muted);
 }
