@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Qwen3-TTS Demo (Mock)</title>
+  <link rel="stylesheet" href="Qwenntts.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="top">
+      <h1 class="title">Qwen3-TTS Demo</h1>
+
+      <p class="lede">
+        A unified Text-to-Speech demo featuring three powerful modes:
+      </p>
+
+      <ul class="bullets">
+        <li><strong>Voice Design</strong>: Create custom voices using natural language descriptions</li>
+        <li><strong>Voice Clone (Base)</strong>: Clone any voice from a reference audio</li>
+        <li><strong>TTS (CustomVoice)</strong>: Generate speech with predefined speakers and optional style instructions
+          <span class="muted">Built with</span> <a href="#" class="link">Qwen3-TTS</a> <span class="muted">by Alibaba Qwen Team.</span>
+        </li>
+      </ul>
+
+      <nav class="tabs" aria-label="Modes">
+        <button class="tab" type="button">Voice Design</button>
+        <button class="tab is-active" type="button">Voice Clone (Base)</button>
+        <button class="tab" type="button">TTS (CustomVoice)</button>
+      </nav>
+
+      <div class="rule"></div>
+    </header>
+
+    <main class="grid">
+      <!-- LEFT COLUMN -->
+      <section class="col">
+        <h2 class="sectionTitle">Clone Voice from Reference Audio</h2>
+
+        <article class="card">
+          <header class="cardHead">
+            <span class="pill">
+              <span class="ico">♪</span>
+              Reference Audio (Upload a voice sample to clone)
+            </span>
+          </header>
+
+          <div class="drop">
+            <div class="dropIcon" aria-hidden="true">⇪</div>
+            <div class="dropText">
+              <div class="dropMain">Drop Audio Here</div>
+              <div class="dropSub">- or -</div>
+              <div class="dropMain">Click to Upload</div>
+            </div>
+          </div>
+
+          <div class="dropFooter" aria-hidden="true">
+            <span class="miniBtn">⇪</span>
+            <span class="miniBtn">🎙</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <header class="cardHead">
+            <span class="pill">Reference Text (Transcript of the reference audio)</span>
+          </header>
+
+          <div class="field">
+            <textarea class="textarea" placeholder="Enter the exact text spoken in the reference audio..."></textarea>
+          </div>
+
+          <label class="check">
+            <input type="checkbox" />
+            <span>Use x-vector only (No reference text needed, but lower quality)</span>
+          </label>
+        </article>
+
+        <article class="card">
+          <header class="cardHead">
+            <span class="pill">
+              <span class="ico">♪</span>
+              Generated Audio
+            </span>
+          </header>
+
+          <div class="emptyArea" aria-label="Generated audio placeholder">
+            <div class="note">♪</div>
+          </div>
+        </article>
+      </section>
+
+      <!-- RIGHT COLUMN -->
+      <section class="col">
+        <article class="card">
+          <header class="cardHead">
+            <span class="pill">Target Text (Text to synthesize with cloned voice)</span>
+          </header>
+
+          <div class="field">
+            <textarea class="textarea textarea--tall" placeholder="Enter the text you want the cloned voice to speak..."></textarea>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="row2">
+            <div class="group">
+              <div class="pill pill--small">Language</div>
+              <div class="select">
+                <span class="selectText">Auto</span>
+                <span class="caret">▾</span>
+              </div>
+            </div>
+
+            <div class="group">
+              <div class="pill pill--small">Model Size</div>
+              <div class="select">
+                <span class="selectText">1.7B</span>
+                <span class="caret">▾</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="cta" type="button">Clone &amp; Generate</button>
+        </article>
+
+        <article class="card">
+          <header class="cardHead">
+            <span class="pill pill--small">Status</span>
+          </header>
+
+          <div class="statusBox"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

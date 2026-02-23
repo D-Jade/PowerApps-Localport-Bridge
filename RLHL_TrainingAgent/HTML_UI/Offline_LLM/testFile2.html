@@ -1,4 +1,3 @@
-<!-- test_file.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,115 +8,114 @@
 </head>
 
 <body>
-  <!-- MAIN = the whole webpage container -->
-  
+  <main class="UI_main" aria-label="Offline RLHL Preference Rater">
 
-    <!-- container 1 side bar 20%-->
-   
+    <!-- LEFT: SIDE MENU -->
+    <aside class="sideMenu" aria-label="Side menu">
+      <header class="sideMenu__header">
+        <h1 class="sideMenu__title">Duel model<br/>RLHL</h1>
+      </header>
 
-    <!--contianer 2 : UI main area (80%)-->
-    <main class="UI_main" aria-label="Offline RLHL Preference Rater">
-      <main class="UI_main">
+      <section class="sideMenu__panel" aria-label="Side menu panel">
+        <h2 class="sideMenu__panelTitle">Side menu</h2>
 
-  <header class="app__header">
-    <h1>Offline RLHL Preference Rater</h1>
+        <!-- Side menu actions -->
+        <button type="button" class="menuBtn" id="newChatBtn">New chat</button>
+      </section>
+    </aside>
+
+    <!-- RIGHT: MAIN CONTENT AREA -->
+    <section class="mainArea" aria-label="Main area">
+
+      <!-- TOP: COMPARISON ROW -->
+      <section class="compareRow" aria-label="Model comparison row">
+
+        <!-- DeepSeek column -->
+<article class="modelCol modelCol--deepseek" aria-label="DeepSeek column">
+  <header class="modelCol__header">
+    <h2 class="modelCol__title">
+  DeepSeek
+  <span id="deepseekStatus" class="statusDot statusDot--idle"></span>
+  <span id="deepseekTime" class="statusTime">—</span>
+</h2>
   </header>
 
-  <!-- CONTAINER 1: Sidebar (now top row) -->
-  <aside class="sidebar">
-    <h2>Sidebar</h2>
-    <p>Future controls / stats</p>
-  </aside>
+          <!-- OUTPUT (chat log) -->
+          <section class="modelCol__output chatLog" id="outA" role="log" aria-label="DeepSeek output">
+            <!-- messages inserted by tfScript.js -->
+          </section>
+        </article>
 
-    <!-- HEADER = title bar -->
-   
+        <!-- DeepSeek ratings column -->
+        <article class="ratingCol ratingCol--deepseek" aria-label="DeepSeek ratings">
+          <header class="ratingCol__header">
+            <h3 class="ratingCol__title">Rating</h3>
+          </header>
 
-    <!-- PROMPT SECTION -->
-    <section class="section" aria-label="Prompt input">
-      <h2 class="section__title">Prompt</h2>
+          <section class="ratingStack">
+            <article class="ratingItem"><p>Correctness</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
+            <article class="ratingItem"><p>Clarity</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
+            <article class="ratingItem"><p>Usefulness</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
+            <article class="ratingItem"><p>Instruction Following</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
+            <article class="ratingItem"><p>Safety / Restraint</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
+          </section>
+        </article>
 
-      <!-- textarea for the instruction prompt -->
-      <textarea
-        id="prompt"
-        class="control control--text"
-        placeholder="Type your instruction here…"
-        rows="3"
-      ></textarea>
+        <!-- Ollama column -->
+<article class="modelCol modelCol--ollama" aria-label="Ollama column">
+  <header class="modelCol__header">
+    <h2 class="modelCol__title">
+  Ollama
+  <span id="ollamaStatus" class="statusDot statusDot--idle"></span>
+  <span id="ollamaTime" class="statusTime">—</span>
+</h2>
+  </header>
 
-      <!-- buttons row -->
-      <nav class="buttonRow" aria-label="Prompt actions">
-        <button type="button" class="btn" id="runBtn">Run Both Models</button>
-        <button type="button" class="btn" id="clearBtn">Clear</button>
-      </nav>
-    </section>
+          <!-- OUTPUT (chat log) -->
+          <section class="modelCol__output chatLog" id="outB" role="log" aria-label="Ollama output">
+            <!-- messages inserted by tfScript.js -->
+          </section>
+        </article>
 
-    <!-- OUTPUTS (2 columns on desktop, 1 column on small screens) -->
-   
+        <!-- Ollama ratings column -->
+        <article class="ratingCol ratingCol--ollama" aria-label="Ollama ratings">
+          <header class="ratingCol__header">
+            <h3 class="ratingCol__title">Rating</h3>
+          </header>
 
-    <!-- RATINGS -->
-    <section class="section" aria-label="Ratings">
+          <section class="ratingStack">
+            <article class="ratingItem"><p>Correctness</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
+            <article class="ratingItem"><p>Clarity</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
+            <article class="ratingItem"><p>Usefulness</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
+            <article class="ratingItem"><p>Instruction Following</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
+            <article class="ratingItem"><p>Safety / Restraint</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
+          </section>
+        </article>
 
-      <h2 class="section__title">Model Comparison Ratings</h2>
+      </section>
 
-<!-- 4-column comparison layout -->
-<section class="compareGrid" aria-label="Model comparison table">
+      <!-- BOTTOM: PROMPT ROW -->
+      <section class="promptRow" aria-label="Prompt row">
 
-  <!-- Header row -->
-  <header class="compareHead">DeepSeek</header>
-  <header class="compareHead compareHead--rating">Rating</header>
-  <header class="compareHead">Ollama 3</header>
-  <header class="compareHead compareHead--rating">Rating</header>
+       <section class="promptArea" aria-label="Prompt area">
 
-  <!-- Row 2: DeepSeek output + DeepSeek ratings + Model B output + Model B ratings -->
-  <article class="compareCell compareCell--output" aria-label="DeepSeek output">
-    <pre class="compareOutput" id="outA">Output text from DeepSeek…</pre>
-  </article>
+  <div class="promptModeRow">
+    <button type="button" class="modeBtn active" id="modeBoth">Both</button>
+    <button type="button" class="modeBtn" id="modeDeepSeek">DeepSeek</button>
+    <button type="button" class="modeBtn" id="modeOllama">Ollama</button>
+  </div>
 
-  <article class="compareCell compareCell--rating" aria-label="DeepSeek rating rows">
-    <section class="ratingStack">
-      <article class="ratingItem"><p>Correctness</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
-      <article class="ratingItem"><p>Clarity</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
-      <article class="ratingItem"><p>Usefulness</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
-      <article class="ratingItem"><p>Instruction Following</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
-      <article class="ratingItem"><p>Safety / Restraint</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
-    </section>
-  </article>
-
-  <article class="compareCell compareCell--output" aria-label="Model B output">
-    <pre class="compareOutput" id="outB">Output text from Model B…</pre>
-  </article>
-
-  <article class="compareCell compareCell--rating" aria-label="Model B rating rows">
-    <section class="ratingStack">
-      <article class="ratingItem"><p>Correctness</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
-      <article class="ratingItem"><p>Clarity</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
-      <article class="ratingItem"><p>Usefulness</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
-      <article class="ratingItem"><p>Instruction Following</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
-      <article class="ratingItem"><p>Safety / Restraint</p><nav class="stars"><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button><button class="star" type="button">★</button></nav></article>
-    </section>
-  </article>
+  <textarea
+    id="prompt"
+    class="control control--text"
+    placeholder="Type your instruction here…"
+    rows="3"
+  ></textarea>
 
 </section>
 
-
-      <!-- optional note -->
-      <input
-        id="note"
-        class="control control--input"
-        placeholder="Optional comparison note…"
-      />
-
-      <!-- bottom buttons -->
-      <nav class="buttonRow" aria-label="Rating actions">
-        <button type="button" class="btn" id="saveBtn">Save Ratings</button>
-        <button type="button" class="btn" id="nextBtn">Next Prompt</button>
-      </nav>
-    </section>
-
-    <footer class="app__footer" aria-label="Footer">
-      <small>Offline layout only (no model calls wired yet).</small>
-    </footer>
   </main>
-  
+
+  <script src="tf2Script.js"></script>
 </body>
 </html>
