@@ -341,7 +341,7 @@ try {
       streamChatReply({
         baseUrl: OLLAMA_BASE,
         modelName: OLLAMA_MODEL,
-        modelLabel: "Ollama",
+        modelLabel: "Llama3:8b",
         outputEl: ollamaOutEl,
         historyRef: ollamaHistory,
         promptText
